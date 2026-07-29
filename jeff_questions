@@ -1,0 +1,12 @@
+CP-83 SF Haircut Calibration Documentation Questions
+
+1. Data 
+Rating match: when prices are matched to ratings by ISIN, it appears that only the original rating is used. It would be helpful to document the rationale for not using the rating as of the beginning of the rolling window. Additionally, how are withdrawn ratings or Non-Rated (NR) periods handled in the series? (e.g., a transaction was originally rated but later withdrawn/NR yet still has price data).
+Price data: what is the data source for each asset class and batch? Are these always traded quotes or IHS Markit-evaluated prices? Furthermore, are there any interest-only transactions (RMBS and CMBS) where price declines are expected?
+Data quality: how are data anomalies detected and treated for each asset class? Are there any known issues in the data—such as specific sources, periods, or deals—that should be documented?
+2. Implementation 
+Rolling window method: please confirm that the details of the calculation method (12-month rolling windows, rolled daily, measuring the endpoint-to-endpoint change). Were 3-month results used in the final proposal? Please also include in the document if alternative methods are considered.
+Quarterly batches: batches 2 and 3 consist of quarterly data. How are their declines computed (e.g., rolling quarterly?), and how do these data get integrated into the same quantile as the daily Batch 1?
+Quantile window: it would be helpful to document the rationale for selecting the 99.5% quantile over other alternatives, and for including all data available for the quantile calculation instead of restricting the data to 'BBB' stress period (2020 to 2021 covid period). Quantiles behave differently from historical worst and could potentially be diluted if more benign data is included.
+From dataset quantiles to haircut assumptions: could you provide documentation on how the results from these separate datasets were consolidated into the proposed haircuts (prior to flooring)? For example, the RMBS 12m quantile seems to suggest different haircut values. Additionally, for ABS assets, there are multiple datasets for each sub-class; how are these consolidated into the final ABS haircut assumptions?
+
